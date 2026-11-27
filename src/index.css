@@ -480,3 +480,46 @@ svg {
   border-start-end-radius: 24px !important;
   border-end-end-radius: 24px !important;
 }
+
+
+
+/* ===== إخفاء صورة البحر في أول واجهة الموبايل وتظبيط تنسيقات التليفون ===== */
+@media (max-width: 768px) {
+  .hero-sea-media {
+    display: none !important;
+  }
+
+  .hero-panel {
+    grid-template-columns: 1fr !important;
+    border-radius: 22px !important;
+  }
+
+  .hero-content,
+  .promo-content {
+    padding: 24px 18px !important;
+    gap: 14px !important;
+  }
+
+  .home-page-stack {
+    gap: 28px !important;
+    padding-bottom: 24px !important;
+  }
+
+  .responsive-cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .navbar-inner {
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    padding-inline: 12px !important;
+  }
+
+  .navbar-links,
+  .navbar-actions {
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    max-width: 100% !important;
+  }
+}

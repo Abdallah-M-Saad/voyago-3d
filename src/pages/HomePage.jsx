@@ -298,9 +298,10 @@ export default function HomePage() {
   };
 
   return (
-    <div style={{ display: "grid", gap: "48px", paddingBottom: "36px" }}>
-      {/* ===== 1. Hero Section كبير بصورة بانورامية + بحث باقتراحات فورية ===== */}
+    <div className="home-page-stack" style={{ display: "grid", gap: "48px", paddingBottom: "36px" }}>
+      {/* ===== 1. Hero Section + بحث باقتراحات فورية (صورة البحر تختفي تلقائياً على الفون) ===== */}
       <section
+        className="hero-panel"
         style={{
           position: "relative",
           borderRadius: "30px",
@@ -309,11 +310,12 @@ export default function HomePage() {
           backdropFilter: "blur(16px)",
           boxShadow: "0 24px 60px var(--glow-soft)",
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
           alignItems: "center",
         }}
       >
         <div
+          className="hero-content"
           style={{
             padding: "46px 36px",
             display: "grid",
@@ -388,6 +390,7 @@ export default function HomePage() {
                   color: "var(--text-main)",
                   fontSize: "14.5px",
                   padding: "6px 4px",
+                  minWidth: 0,
                 }}
               />
               {searchQuery && (
@@ -467,7 +470,7 @@ export default function HomePage() {
             )}
           </div>
 
-          <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", paddingTop: "4px" }}>
+          <div className="hero-cta-row" style={{ display: "flex", gap: "12px", flexWrap: "wrap", paddingTop: "4px" }}>
             <button
               type="button"
               className="lang-btn"
@@ -495,6 +498,7 @@ export default function HomePage() {
         </div>
 
         <div
+          className="hero-sea-media"
           style={{
             minHeight: "360px",
             height: "100%",
@@ -589,6 +593,7 @@ export default function HomePage() {
         </div>
 
         <div
+          className="responsive-cards-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
@@ -697,9 +702,10 @@ export default function HomePage() {
 
       {/* ===== 4. إعلانات مزدوجة للعروض والحملات ===== */}
       <section
+        className="responsive-cards-grid"
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
           gap: "22px",
         }}
       >
@@ -774,6 +780,7 @@ export default function HomePage() {
         </div>
 
         <div
+          className="responsive-cards-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
@@ -853,7 +860,7 @@ export default function HomePage() {
           border: "1px solid var(--border-hover)",
           background: "var(--bg-card)",
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
           alignItems: "center",
         }}
       >
@@ -863,13 +870,13 @@ export default function HomePage() {
           style={{
             width: "100%",
             height: "100%",
-            minHeight: "310px",
+            minHeight: "260px",
             objectFit: "cover",
             display: "block",
           }}
         />
 
-        <div style={{ padding: "36px 32px", display: "grid", gap: "14px" }}>
+        <div className="promo-content" style={{ padding: "36px 32px", display: "grid", gap: "14px" }}>
           <span style={{ fontSize: "12px", fontWeight: 700, color: "var(--accent)" }}>
             {isAr ? "✦ لماذا صُممت منصة فوياجو ٣دي؟" : "✦ WHY VOYAGO 3D WAS BUILT"}
           </span>
@@ -921,6 +928,7 @@ export default function HomePage() {
         </div>
 
         <div
+          className="responsive-cards-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
@@ -966,6 +974,7 @@ export default function HomePage() {
         </div>
 
         <div
+          className="responsive-cards-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
