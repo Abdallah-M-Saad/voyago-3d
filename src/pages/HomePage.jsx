@@ -500,7 +500,10 @@ export default function HomePage() {
             height: "100%",
             position: "relative",
             overflow: "hidden",
-            borderRadius: "0 30px 30px 0",
+            borderStartStartRadius: "0px",
+            borderEndStartRadius: "0px",
+            borderStartEndRadius: "30px",
+            borderEndEndRadius: "30px",
           }}
         >
           <img
@@ -877,233 +880,137 @@ export default function HomePage() {
           </h2>
           <p style={{ margin: 0, color: "var(--text-muted)" }}>
             {isAr
-              ? "كل قسم مصمم ليمنح الزائر إحساساً بالانطلاق والوضوح، مع تبديل فوري بين العربية والإنجليزية والوضعين الليلي والصباحي."
-              : "Designed for clarity and presence with instant Arabic/English switching and dual lighting themes."}
+              ? "كل قسم مصمم ليمنح الزائر إحساساً بالانطلاق والوضوح، مع عروض واضحة وسهولة كاملة في التصفح والحجز."
+              : "Every section is crafted for clarity, visual impact, and effortless trip planning."}
           </p>
           <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", paddingTop: "6px" }}>
             <button
               type="button"
               className="lang-btn"
               style={{
-                padding: "12px 20px",
                 background: "linear-gradient(135deg, #f59e0b, #ea580c)",
                 color: "#fffbeb",
                 borderColor: "transparent",
               }}
               onClick={() => navigateTo("booking")}
             >
-              {isAr ? "ابدأ تجربة الحجز الآن" : "Try Booking Now"}
+              {isAr ? "ابدأ حجزك الآن" : "Start Booking"}
+            </button>
+            <button
+              type="button"
+              className="lang-btn"
+              onClick={() => navigateTo("explore")}
+            >
+              {isAr ? "استكشف العروض" : "Explore Offers"}
             </button>
           </div>
         </div>
       </section>
 
-      {/* ===== 7. فنادق ومنتجعات مختارة بصور وإمكانية حجز ===== */}
-      <section style={{ display: "grid", gap: "20px" }}>
+      {/* ===== 7. مميزات المنصة ===== */}
+      <section style={{ display: "grid", gap: "18px" }}>
         <div>
           <h2 style={{ margin: "0 0 4px", fontSize: "clamp(24px, 3vw, 34px)" }}>
-            {isAr ? "فنادق ومنتجعات مختارة للحجز" : "Featured Hotels & Luxury Stays"}
+            {isAr ? "أبرز مزايا المنصة" : "Platform Highlights"}
           </h2>
           <p style={{ margin: 0, color: "var(--text-muted)" }}>
             {isAr
-              ? "صور حقيقية لفنادق وإطلالات مميزة مع إمكانية حجز الإقامة مباشرة."
-              : "Curated hotel stays with live nightly rates and instant booking prefill."}
+              ? "تجربة متكاملة تجمع بين الجاذبية البصرية والخصائص التفاعلية."
+              : "A cohesive experience blending visual warmth with interactive tools."}
           </p>
         </div>
 
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(290px, 1fr))",
-            gap: "22px",
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+            gap: "20px",
           }}
         >
-          {hotels.map((hotel) => (
+          {PLATFORM_FEATURES.map((feat, i) => (
             <article
-              key={hotel.id}
+              key={i}
               style={{
-                overflow: "hidden",
-                borderRadius: "24px",
+                padding: "24px",
+                borderRadius: "22px",
                 background: "var(--bg-card)",
                 border: "1px solid var(--border-subtle)",
-                backdropFilter: "blur(14px)",
                 display: "grid",
-                gridTemplateRows: "220px 1fr",
-                boxShadow: "0 14px 34px var(--glow-soft)",
+                gap: "10px",
+                alignContent: "start",
               }}
             >
-              <img
-                src={hotel.image}
-                alt={isAr ? hotel.nameAr : hotel.nameEn}
-                style={{
-                  width: "100%",
-                  height: "220px",
-                  objectFit: "cover",
-                  display: "block",
-                }}
-              />
-
-              <div
-                style={{
-                  padding: "20px",
-                  display: "grid",
-                  gap: "12px",
-                  alignContent: "space-between",
-                }}
-              >
-                <div style={{ display: "grid", gap: "6px" }}>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      gap: "8px",
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontSize: "11.5px",
-                        fontWeight: 700,
-                        color: "var(--accent)",
-                      }}
-                    >
-                      {isAr ? hotel.badgeAr : hotel.badgeEn}
-                    </span>
-                    <span className="nav-badge">{hotel.rating}</span>
-                  </div>
-
-                  <h3 style={{ margin: 0, fontSize: "19px" }}>
-                    {isAr ? hotel.nameAr : hotel.nameEn}
-                  </h3>
-                  <p style={{ margin: 0, color: "var(--text-muted)", fontSize: "13.5px" }}>
-                    {isAr ? hotel.cityAr : hotel.cityEn}
-                  </p>
-                </div>
-
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    gap: "10px",
-                    paddingTop: "8px",
-                  }}
-                >
-                  <strong style={{ fontSize: "17px" }}>
-                    ${hotel.pricePerNight}{" "}
-                    <span style={{ fontSize: "12px", color: "var(--text-muted)" }}>
-                      / {isAr ? "ليلة" : "night"}
-                    </span>
-                  </strong>
-
-                  <button
-                    type="button"
-                    className="lang-btn"
-                    style={{
-                      background: "linear-gradient(135deg, #f59e0b, #ea580c)",
-                      color: "#fffbeb",
-                      borderColor: "transparent",
-                    }}
-                    onClick={() =>
-                      navigateTo("booking", {
-                        bookingDraft: {
-                          bookingType: "hotel",
-                          hotelId: hotel.id,
-                          nights: 3,
-                        },
-                      })
-                    }
-                  >
-                    {isAr ? "احجز الفندق" : "Book Hotel"}
-                  </button>
-                </div>
-              </div>
+              <span style={{ fontSize: "26px" }}>{feat.icon}</span>
+              <h3 style={{ margin: 0, fontSize: "18px" }}>
+                {isAr ? feat.titleAr : feat.titleEn}
+              </h3>
+              <p style={{ margin: 0, color: "var(--text-muted)", fontSize: "14px" }}>
+                {isAr ? feat.descAr : feat.descEn}
+              </p>
             </article>
           ))}
         </div>
       </section>
 
-      {/* ===== 8. بطاقات مزايا المنصة ===== */}
-      <section
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-          gap: "18px",
-        }}
-      >
-        {PLATFORM_FEATURES.map((feat, idx) => (
-          <div
-            key={idx}
-            style={{
-              padding: "24px",
-              borderRadius: "22px",
-              background: "var(--bg-card)",
-              border: "1px solid var(--border-subtle)",
-              display: "grid",
-              gap: "10px",
-            }}
-          >
-            <span style={{ fontSize: "24px" }}>{feat.icon}</span>
-            <h3 style={{ margin: 0, fontSize: "18px" }}>
-              {isAr ? feat.titleAr : feat.titleEn}
-            </h3>
-            <p style={{ margin: 0, color: "var(--text-muted)", fontSize: "14px" }}>
-              {isAr ? feat.descAr : feat.descEn}
-            </p>
-          </div>
-        ))}
-      </section>
-
-      {/* ===== 9. انطباعات وتجارب المسافرين ===== */}
+      {/* ===== 8. آراء المسافرين ===== */}
       <section style={{ display: "grid", gap: "18px" }}>
-        <h2 style={{ margin: 0, fontSize: "clamp(22px, 2.8vw, 30px)" }}>
-          {isAr ? "انطباعات الزوار عن التجربة" : "Visitor Impressions"}
-        </h2>
+        <div>
+          <h2 style={{ margin: "0 0 4px", fontSize: "clamp(24px, 3vw, 34px)" }}>
+            {isAr ? "انطباعات وتجارب المسافرين" : "Traveler Impressions"}
+          </h2>
+          <p style={{ margin: 0, color: "var(--text-muted)" }}>
+            {isAr
+              ? "آراء مختصرة حول سهولة التصفح وتجربة الألوان والحجز."
+              : "Quick notes on browsing flow, palette contrast, and booking ease."}
+          </p>
+        </div>
 
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))",
-            gap: "18px",
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+            gap: "20px",
           }}
         >
           {TRAVELER_STORIES.map((story, idx) => (
-            <blockquote
+            <article
               key={idx}
               style={{
-                margin: 0,
                 padding: "22px",
                 borderRadius: "22px",
                 background: "var(--bg-card)",
                 border: "1px solid var(--border-subtle)",
                 display: "grid",
                 gap: "12px",
+                alignContent: "space-between",
               }}
             >
-              <p style={{ margin: 0, fontSize: "14.5px", lineHeight: 1.75 }}>
+              <p style={{ margin: 0, fontSize: "14.5px", lineHeight: 1.7 }}>
                 {isAr ? story.quoteAr : story.quoteEn}
               </p>
-              <div style={{ fontSize: "13px", color: "var(--text-muted)" }}>
-                <strong style={{ color: "var(--text-main)" }}>
+              <div style={{ display: "grid", gap: "2px" }}>
+                <strong style={{ fontSize: "15px" }}>
                   {isAr ? story.nameAr : story.nameEn}
-                </strong>{" "}
-                • {isAr ? story.tripAr : story.tripEn}
+                </strong>
+                <span style={{ fontSize: "12.5px", color: "var(--accent)" }}>
+                  {isAr ? story.tripAr : story.tripEn}
+                </span>
               </div>
-            </blockquote>
+            </article>
           ))}
         </div>
       </section>
 
-      {/* ===== 10. الأسئلة الشائعة للعملاء (FAQ) ===== */}
+      {/* ===== 9. الأسئلة الشائعة (FAQ) ===== */}
       <section style={{ display: "grid", gap: "16px" }}>
         <div>
           <h2 style={{ margin: "0 0 4px", fontSize: "clamp(24px, 3vw, 34px)" }}>
-            {isAr ? "الأسئلة الشائعة للعملاء" : "Frequently Asked Questions"}
+            {isAr ? "الأسئلة الشائعة" : "Frequently Asked Questions"}
           </h2>
           <p style={{ margin: 0, color: "var(--text-muted)" }}>
             {isAr
-              ? "إجابات سريعة على أكثر الأسئلة شيوعاً حول الرحلات، الفنادق، والحجز."
-              : "Quick answers to common questions about trips, hotels, and bookings."}
+              ? "إجابات سريعة لأكثر الاستفسارات حول الحجز والفنادق والمزايا التفاعلية."
+              : "Quick answers to common questions about booking, stays, and interactive tools."}
           </p>
         </div>
 
@@ -1114,11 +1021,9 @@ export default function HomePage() {
               <div
                 key={item.id}
                 style={{
-                  borderRadius: "20px",
+                  borderRadius: "18px",
                   background: "var(--bg-card)",
-                  border: `1px solid ${
-                    isOpen ? "var(--border-hover)" : "var(--border-subtle)"
-                  }`,
+                  border: `1px solid ${isOpen ? "var(--border-hover)" : "var(--border-subtle)"}`,
                   overflow: "hidden",
                 }}
               >
@@ -1127,28 +1032,22 @@ export default function HomePage() {
                   onClick={() => setOpenFaqId(isOpen ? null : item.id)}
                   style={{
                     width: "100%",
-                    border: "none",
-                    background: "transparent",
-                    color: "var(--text-main)",
                     padding: "18px 22px",
+                    background: "transparent",
+                    border: "none",
+                    color: "var(--text-main)",
                     textAlign: "start",
                     cursor: "pointer",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
-                    gap: "14px",
-                    fontSize: "16px",
+                    gap: "12px",
+                    fontSize: "15.5px",
                     fontWeight: 700,
                   }}
                 >
                   <span>{isAr ? item.qAr : item.qEn}</span>
-                  <span
-                    style={{
-                      color: "var(--accent)",
-                      fontSize: "18px",
-                      flexShrink: 0,
-                    }}
-                  >
+                  <span style={{ color: "var(--accent)", fontSize: "18px", flexShrink: 0 }}>
                     {isOpen ? "−" : "+"}
                   </span>
                 </button>
@@ -1156,10 +1055,10 @@ export default function HomePage() {
                 {isOpen && (
                   <div
                     style={{
-                      padding: "0 22px 20px",
+                      padding: "0 22px 18px",
                       color: "var(--text-muted)",
                       fontSize: "14.5px",
-                      lineHeight: 1.8,
+                      lineHeight: 1.75,
                     }}
                   >
                     {isAr ? item.aAr : item.aEn}
@@ -1168,58 +1067,6 @@ export default function HomePage() {
               </div>
             );
           })}
-        </div>
-      </section>
-
-      {/* ===== 11. بانر ختامي ضخم قبل نهاية السكرول ===== */}
-      <section
-        style={{
-          padding: "36px 32px",
-          borderRadius: "28px",
-          background:
-            "linear-gradient(135deg, rgba(136, 19, 55, 0.34), rgba(234, 88, 12, 0.24), rgba(245, 158, 11, 0.2))",
-          border: "1px solid var(--border-hover)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: "20px",
-          flexWrap: "wrap",
-        }}
-      >
-        <div style={{ display: "grid", gap: "6px", maxWidth: "680px" }}>
-          <h2 style={{ margin: 0, fontSize: "clamp(22px, 3vw, 32px)" }}>
-            {isAr
-              ? "جاهز تبدأ رحلتك وتجرّب باقي صفحات المنصة؟"
-              : "Ready to jump into Explore, Booking, or My Trips?"}
-          </h2>
-          <p style={{ margin: 0, color: "var(--text-muted)", fontSize: "14.5px" }}>
-            {isAr
-              ? "انتقل لصفحة بناء الحجز لتجربة إنشاء حجز وتتبع الـ Fake API، أو راجع رحلاتك المحفوظة."
-              : "Head to Booking to test live mock bookings and API logs, or review your saved trips."}
-          </p>
-        </div>
-
-        <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
-          <button
-            type="button"
-            className="lang-btn"
-            onClick={() => navigateTo("explore")}
-          >
-            {t?.nav?.explore || (isAr ? "استكشف الوجهات" : "Explore")}
-          </button>
-          <button
-            type="button"
-            className="lang-btn"
-            style={{
-              padding: "12px 22px",
-              background: "linear-gradient(135deg, #f59e0b, #ea580c)",
-              color: "#fffbeb",
-              borderColor: "transparent",
-            }}
-            onClick={() => navigateTo("booking")}
-          >
-            {t?.nav?.booking || (isAr ? "بناء الحجز" : "Booking")}
-          </button>
         </div>
       </section>
     </div>
