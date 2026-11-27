@@ -466,3 +466,17 @@ svg {
     font-size: 17px !important;
   }
 }
+/* ضبط تدوير زوايا الصورة تلقائياً في العربي والإنجليزي */
+.hero-card,
+.hero-section > div {
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+.hero-card img,
+.hero-section img,
+.hero-image {
+  border-radius: 0 !important;
+  border-start-end-radius: 24px !important;
+  border-end-end-radius: 24px !important;
+}
